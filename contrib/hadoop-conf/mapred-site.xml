@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <name>mapred.job.tracker</name>
+  <value>localhost:54311</value>
+  <description>The host and port that the MapReduce job tracker runs
+  at.  If "local", then jobs are run in-process as a single map
+  and reduce task.
+  </description>
+</property>
+
+<property>
+  <name>jobtracker.thrift.address</name>
+  <value>0.0.0.0:9290</value>
+</property>
+
+<property>
+  <name>mapred.jobtracker.plugins</name>
+  <value>org.apache.hadoop.thriftfs.ThriftJobTrackerPlugin</value>
+  <description>Comma-separated list of jobtracker plug-ins to be activated.</description>
+</property>
+
+<property>
+  <name>mapreduce.framework.name</name>
+  <value>yarn</value>
+</property>
+
+<property>
+    <name>mapred.child.java.opts</name>
+    <value>-Djava.awt.headless=true</value>
+</property>
+
+<property>
+  <name>mapred.map.child.java.opts</name>
+  <value>-Xms1024m -Xmx4096m -Djava.awt.headless=true -verbose:gc -Xloggc:/tmp/@taskid@.gc</value>
+</property>
+
+<property>
+  <name>mapred.reduce.child.java.opts</name>
+  <value>-Xms1024m -Xmx4096m -Djava.awt.headless=true -verbose:gc -Xloggc:/tmp/@taskid@.gc</value>
+</property>
+
+<property>
+<!-- add headless to default -Xmx1024m -->
+    <name>yarn.app.mapreduce.am.command-opts</name>
+    <value>-Djava.awt.headless=true -Xmx4096m</value>
+</property>
+
+<property>
+    <name>yarn.app.mapreduce.am.admin-command-opts</name>
+    <value>-Djava.awt.headless=true -Xmx4096m</value>
+</property>
+</configuration>

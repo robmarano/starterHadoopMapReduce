@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <name>dfs.http.address</name>
+  <value>hdfs://localhost:50070</value>
+  <description>
+    Web address of DFS cluster.
+  </description>
+</property>
+
+<property>
+  <name>dfs.webhdfs.enable</name>
+  <value>true</value>
+</property>
+
+<property>
+  <name>dfs.data.dir</name>
+  <value>/opt/dfs/data</value>
+  <description>
+    Comma separated list of paths on the local filesystem
+    of a DataNode where it should store its blocks.  If
+    this is a comma-delimited list of directories, then
+    data will be stored in all named directories,
+    typically on different devices.
+  </description>
+</property>
+
+<property>
+  <name>dfs.name.dir</name>
+  <value>/opt/dfs/name</value>
+  <description>
+    Path on the local filesystem where the NameNode stores
+    the namespace and transactions logs persistently.
+    If this is a comma-delimited list of directories then
+    the name table is replicated in all of the directories,
+    for redundancy.
+  </description>
+</property>
+
+<property>
+  <name>dfs.replication</name>
+  <value>1</value>
+  <description>Default block replication.
+  The actual number of replications can be specified when the file is created.
+  The default is used if replication is not specified in create time.
+  </description>
+</property>
+
+<property>
+  <name>dfs.permissions</name>
+  <value>true</value>
+  <description>
+    If yes use the permissions system as described here. If no, permission checking  is turned off, but all other behavior is unchanged. Switching from one parameter value to the other does not change the mode, owner or group of files or directories.
+    Regardless of whether permissions are on or off, chmod, chgrp and chown always check permissions. These functions are only useful in the permissions context, and so there is no backwards compatibility issue. Furthermore, this allows administrators to reliably set owners and permissions in advance of turning on regular permissions checking.
+  </description>
+</property>
+
+<property>
+  <name>dfs.permissions.supergroup</name>
+  <value>hadoop</value>
+  <description>
+    The name of the group of super-users.
+  </description>
+</property>
+
+<!--
+<property>
+  <name>dfs.datanode.max.xcievers</name>
+  <value>4096</value>
+</property>
+-->
+</configuration>
