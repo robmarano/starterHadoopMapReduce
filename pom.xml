@@ -17,15 +17,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.apache.hadoop</groupId>
-  <artifactId>HadoopWords</artifactId>
-  <version>2.3.0</version>
-  <description>Apache Hadoop MapReduce Word Stats Examples</description>
-  <name>Apache Hadoop MapReduce Word Stats Examples</name>
+  <groupId>edu.cooper.ece465.hadoop.mapreduce</groupId>
+  <artifactId>hMR_patentCitation</artifactId>
+  <version>1.0.0</version>
+  <name>hMR_patentCitation</name>
+  <description>Patent Citation map-reduce example from "Hadoop in Action" book from Manning Publications: see Chapter 4.  Link to book site: http://www.manning.com/lam/.</description>
   <packaging>jar</packaging>
 
   <properties>
-	<project.version>2.3.0</project.version>
+	<hadoop.version>2.3.0</hadoop.version>
     <mr.examples.basedir>${basedir}</mr.examples.basedir>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -64,42 +64,42 @@
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-hdfs</artifactId>
-	  <version>${project.version}</version>
+	  <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-common</artifactId>
-	  <version>${project.version}</version>
+	  <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-auth</artifactId>
-	  <version>${project.version}</version>
+	  <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-client</artifactId>
-	  <version>${project.version}</version>
+	  <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-streaming</artifactId>
-      <version>${project.version}</version>
+      <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-mapreduce-client-common</artifactId>
-      <version>${project.version}</version>
+      <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-mapreduce-client-core</artifactId>
-      <version>${project.version}</version>
+      <version>${hadoop.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-mapreduce-client-app</artifactId>
-      <version>${project.version}</version>
+      <version>${hadoop.version}</version>
     </dependency>
      <dependency>
       <groupId>com.google.guava</groupId>
@@ -142,7 +142,7 @@
        <configuration>
         <archive>
           <manifest>
-            <mainClass>org.apache.hadoop.examples.WordCount</mainClass>
+			  <mainClass>edu.cooper.ece465.hadoop.mapreduce.hMR_patentCitation</mainClass>
           </manifest>
         </archive>
       </configuration>
@@ -163,45 +163,10 @@
          <arguments>
 			 <argument>jar</argument>
 			 <argument>${basedir}/target/${project.artifactId}-${project.version}.jar</argument>
-			 <argument>/tmp/books</argument>
+			 <argument>/user/rob/patents/cite75_99.txt</argument>
 			 <argument>/tmp/rmarano/${maven.build.timestamp}</argument>
          </arguments>
        </configuration>
-<!--
-			 <argument>${basedir}/target/${maven.final.name}.jar</argument>
-       <configuration>
-         <executable>java</executable>
-         <arguments>
-             <argument>-Dlog4j.configuration=file:${basedir}/src/test/resources/log4j.properties</argument>
-             <argument>-classpath</argument>
-               <classpath>
-                 <dependency>log4j:log4j</dependency>
-                 <dependency>org.slf4j:slf4j-log4j12</dependency>
-                 <dependency>org.slf4j:slf4j-api</dependency>
-                 <dependency>com.google.protobuf:protobuf-java</dependency>
-                 <dependency>org.codehaus.jackson:jackson-core-asl</dependency>
-                 <dependency>org.codehaus.jackson:jackson-mapper-asl</dependency>
-                 <dependency>commons-cli:commons-cli</dependency>
-                 <dependency>commons-logging:commons-logging</dependency>
-                 <dependency>commons-configuration:commons-configuration</dependency>
-                 <dependency>commons-collections:commons-collections</dependency>
-                 <dependency>commons-lang:commons-lang</dependency>
-                 <dependency>org.apache.hadoop:hadoop-core</dependency>
-                 <dependency>org.apache.hadoop:hadoop-auth</dependency>
-                 <dependency>org.apache.hadoop:hadoop-client</dependency>
-                 <dependency>org.apache.hadoop:hadoop-hdfs</dependency>
-                 <dependency>org.apache.hadoop:hadoop-common</dependency>
-                 <dependency>org.apache.hadoop:hadoop-mapreduce-client-common</dependency>
-                 <dependency>org.apache.hadoop:hadoop-mapreduce-client-core</dependency>
-                 <dependency>org.apache.hadoop:hadoop-mapreduce-client-app</dependency>
-				 <dependency>com.google.guava:guava</dependency>
-               </classpath>
-             <argument>org.apache.hadoop.examples.WordCount</argument>
-			 <argument>/tmp/books</argument>
-			 <argument>/tmp/rmarano/wordcount</argument>
-         </arguments>
-       </configuration>
--->
      </plugin>
      <plugin>
        <groupId>org.apache.maven.plugins</groupId>

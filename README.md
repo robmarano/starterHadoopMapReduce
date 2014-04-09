@@ -22,27 +22,29 @@ export HADOOP_OPTS="-server -Djava.net.preferIPv4Stack=true -Djava.security.krb5
 export CLASSPATH=.:${HADOOP_PREFIX}/etc/hadoop:$(find "${HADOOP_PREFIX}" -maxdepth 1 -name '*.jar' |xargs echo  |tr ' ' ':'):$(find "${HADOOP_PREFIX}/lib" -maxdepth 1 -name '*.jar' |xargs echo  |tr ' ' ':')
 export PATH=${HADOOP_PREFIX}/sbin:${HADOOP_PREFIX}/bin:${PATH}
 
-2 - Download several books from http://www.gutenberg.org; for example,
+2 - Download the patent data set:
 
-http://www.gutenberg.org/ebooks/39064
-http://www.gutenberg.org/ebooks/3207
+http://www.nber.org/patents/Cite75_99.txt
+http://www.nber.org/patents/pat63_99.txt
 
-and store those files in your HDFS, e.g., in /tmp/books by uploading using the following command:
+and store those files in your HDFS, e.g., in /tmp/patents by uploading using the following command:
 
-hadoop fs -copyFromLocal /dir/book-1.txt /tmp/books
-hadoop fs -copyFromLocal /dir/book-2.txt /tmp/books
+hadoop fs -mkdir /tmp/patents
+hadoop fs -copyFromLocal /.../Cite75_99.txt /tmp/patents
+hadoop fs -copyFromLocal /.../pat63_99.txt /tmp/patents
 
 3 - cd into starterHadoopMapReduce
+  - git checkout patentCitationProcessing
 4 - vi pom.xml
   - change /tmp/rmarano to /tmp/whatever
 5 - mvn clean dependency:resolve compile package exec:exec
 6 - Check the job is running here: http://localhost:18088/cluster/apps
 7 - When job completed, check http://localhost:50075/browseDirectory.jsp?dir=%2Ftmp&namenodeInfoPort=50070&nnaddr=127.0.0.1:9000
-  - you should see a file like this /tmp/rmarano/20140405-2258/_SUCCESS and /tmp/rmarano/20140405-2258/part-r-00000
+  - you should see a file like this /tmp/whatever/20140405-2258/_SUCCESS and /tmp/whatever/20140405-2258/part-r-00000
   - you can cat the file with the following command:
 
-hadoop fs -cat /tmp/rmarano/20140405-2258/part-r-00000
+hadoop fs -cat /tmp/whatever/20140405-2258/part-r-00000
 
-CONGRATULATIONS!  You have run your first map-reduce program on Hadoop.
+CONGRATULATIONS!  You have run your second map-reduce program on Hadoop.
 
 /rob
